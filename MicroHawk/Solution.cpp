@@ -4,21 +4,25 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-
-int main(){
-      string s;
-    cin >> s;
-
-    int n = s.length();
-    int hh, mm, ss;
-    hh = (s[0] - '0') * 10 + (s[1] - '0');
-    mm = (s[3] - '0') * 10 + (s[4] - '0');
-    ss = (s[6] - '0') * 10 + (s[7] - '0');
-
-    if (hh < 12 && s[8] == 'P') hh += 12;
-    if (hh == 12 && s[8] == 'A') hh = 0;
-
-    printf("%02d:%02d:%02d\n", hh, mm, ss);
-
-    return 0;
+int main() 
+{
+    int n,temp=0,count=0,i;
+    cin>>n;
+    vector<int> array(n);
+    for(i=0; i<n;i++)
+    {
+     cin>>array[i];
 }
+    sort(array.begin(),array.end());
+temp=array[n-1];
+/*for(int i=0; i<n;i++)
+        cout<<c[i];
+*/
+    for(i=0; i<n; i++)
+{
+        if(temp==array[i])
+            count++;
+    }
+cout<<count;
+return 0;
+} 
