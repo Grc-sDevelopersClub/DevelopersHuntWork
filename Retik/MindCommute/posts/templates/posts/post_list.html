@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>MindCommute | Community</title>
+  </head>
+  <body>
+        <a href="{% url 'journallist' %}">Journal</a><br>
+    <a href="{% url 'createpost' %}">New Post</a><br>
+    {% for post in object_list %}
+    <strong>{{ post.author.username }}</strong>
+    <h3><a href="{% url 'postdetail' post.pk %}">{{ post.headline }}</a></h3>
+    {% endfor %}
+  </body>
+</html>
