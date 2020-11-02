@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MindCommute | Post : {{post.headline}}</title>
+  </head>
+  <body>
+    <strong>{{ object.author.username }}</strong>
+    <p>{{object.headline}}</p><hr>
+    <p>{{object.description}}</p>
+    <em>{{object.created}}</em>
+
+    <ul>
+    {% for comment in object.comment_set.all %}
+    <li><span>{{comment.author}} : </span>
+      {{comment.text}}
+    </li>
+      {% for reply in object.comment_set.replies.all %}
+        <li>&nbsp &nbsp
+          <span>{{reply.author}} : </span>
+            {{reply.text}}
+        </li>
+      {% endfor %}
+    <form action="{% url 'postdetail' pk=object.id %}" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="comment_id" value="{{comment_id}}">
+      {{ comment_form.as_p }}
+      <input type="submit" value="comment">
+    </form>
+    {% endfor %}
+    </ul>
+    <form action="{% url 'postdetail' pk=object.id %}" method="POST">
+      {% csrf_token %}
+      {{ comment_form.as_p }}
+      <input type="submit" value="comment">
+    </form>
+  </body>
+</html>
